@@ -1,0 +1,50 @@
+.app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    
+
+    h1 {
+        text-align: center;
+        color: #FFF;
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        background-color: #FFF;
+        padding: 2rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+
+        input, button {
+            padding: 0.8rem;
+            border-radius: 0.7rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button{
+            background: linear-gradient(135deg, #794baa, #1d0237) ;
+            color: #FFF;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 0.85;
+            }
+        }
+    }
+
+    .user-list{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}

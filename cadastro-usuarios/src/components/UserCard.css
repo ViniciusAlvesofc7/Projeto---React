@@ -1,0 +1,28 @@
+.userCard{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #FFF;
+    padding: 1rem 1.25rem;
+    border-radius: 0.8rem;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+    
+    .user-card-avatar{
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .user-card-info{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h2{
+            font-size: 1.2rem;
+            color: #553279;
+        }
+    }
+}
+
