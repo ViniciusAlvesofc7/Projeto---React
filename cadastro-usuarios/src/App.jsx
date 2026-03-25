@@ -1,25 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import UserCard from './components/UserCard';
+import axios from 'axios'
 
 function App() {
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [age, setAge] = useState();
+  const [idade, setIdade] = useState('');
   const [users, setUsers] = useState([]);
 
-  function handleSubmit(event) {
+  async function buscarUsuarios() {
+    const resposta = await axios.get('http://localhost:3003/usuarios')
+
+    setUsers(resposta.data)
+  }
+
+  useEffect(() => {
+    buscarUsuarios();
+  }, [])
+
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const newUsers = {
-      id: Date.now(),
-      name,
+    await axios.post('http://localhost:3003/usuarios', {
+      nome,
       email,
-      age
+      idade
+    })
+
+    setNome('')
+    setIdade('')
+    setEmail('')
+
+    buscarUsuarios();
+  }
+
+  async function deletarUsuario(id) {
+    try {
+      await axios.delete(`http://localhost:3003/usuarios/${id}`);
+      buscarUsuarios(); // 🔄 atualiza lista
+    } catch (erro) {
+      console.log(erro);
     }
-
-    setUsers([...users, newUsers])
-
   }
 
   return (
@@ -30,8 +52,8 @@ function App() {
         <input
           type="text"
           placeholder='Nome'
-          value={name}
-          onChange={event => setName(event.target.value)}
+          value={nome}
+          onChange={event => setNome(event.target.value)}
         />
         <input
           type="email"
@@ -42,7 +64,7 @@ function App() {
         <input
           type="number"
           placeholder='Idade'
-          value={age} onChange={event => setAge(event.target.value)} max={200} min={0}
+          value={idade} onChange={event => setIdade(event.target.value)} max={200} min={0}
         />
 
         <button type='submit'>Cadastrar</button>
@@ -50,7 +72,11 @@ function App() {
 
       <div className='user-list'>
         {users.map((user) => (
-          <UserCard key={user.id} user={user}/>
+          <UserCard
+            key={user._id}
+            user={user}
+            deletarUsuario={deletarUsuario}
+          />
         ))}
       </div>
     </div>

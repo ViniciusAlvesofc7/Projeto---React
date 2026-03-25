@@ -6,7 +6,8 @@
     padding: 1rem 1.25rem;
     border-radius: 0.8rem;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
-    
+    position: relative;
+
     .user-card-avatar{
         width: 4rem;
         height: 4rem;
@@ -23,6 +24,28 @@
             font-size: 1.2rem;
             color: #553279;
         }
+    }
+
+    span{
+        color: red;
+        font-weight: bold;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        top: 2px;
+        right: 2px;
+        cursor: pointer;
+        border: 1px solid red;
+        border-radius: 50%; 
+        transition: all 0.3s ease;
+
+        &:hover{
+            color: #fff;
+            background-color: red;
+            transform: scale(1.1);
+        }
+        
     }
 }
 
